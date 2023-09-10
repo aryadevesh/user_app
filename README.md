@@ -3,6 +3,8 @@
 A new Flutter project.
 
 ## Getting Started
+Please provide your own Google Maps and Cloud Messaging API in map_key.dart to make it work.
+The project is still in progress so please let me cook 🙏😌.
 
 This project is a starting point for a Flutter application.
 
