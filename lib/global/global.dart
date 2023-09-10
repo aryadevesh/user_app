@@ -10,7 +10,6 @@ UserModel? userModelCurrentInfo;
 List dList = []; //active doctors list
 String chosenDoctorId  = "";
 String userPickupAddress = "";
-String cloudMessagingServerToken = "key=AAAAVpNA7Dk:APA91bERdc42mXl6gQDYRIRAQsdpjci9-cLewVyMGw2k7KZIr34YTx7ZeATSJ-cRMNbVpgH2HOxsIXEQLTzIYr3fbnRislRf4fD2_hfl4Dj_I-3Vu3aSoF93ph5pWihDNBe0rm8_gnpF";
 String doctorServiceDetails = "";
 String doctorName = "";
 String doctorPhone = "";

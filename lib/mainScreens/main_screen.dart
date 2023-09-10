@@ -722,7 +722,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                         'Waiting for Response\nfrom Doctor',
                         duration: const Duration(seconds: 6),
                         textAlign: TextAlign.center,
-                        textStyle: const TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
+                        textStyle: const TextStyle(fontSize: 28.0, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       ScaleAnimatedText(
                         'Please wait...',
