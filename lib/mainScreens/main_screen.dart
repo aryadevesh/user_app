@@ -264,6 +264,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
     userEmail = userModelCurrentInfo!.email!;
 
     initializeGeofireListener();
+    AssistantMethods.readTreatmentsKeysForOnlineUser(context);
   }
 
   @override
@@ -721,13 +722,13 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                         'Waiting for Response\nfrom Doctor',
                         duration: const Duration(seconds: 6),
                         textAlign: TextAlign.center,
-                        textStyle: const TextStyle(fontSize: 30.0, color: Colors.white, fontWeight: FontWeight.bold),
+                        textStyle: const TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       ScaleAnimatedText(
                         'Please wait...',
                         duration: const Duration(seconds: 10),
                         textAlign: TextAlign.center,
-                        textStyle: const TextStyle(fontSize: 32.0, color: Colors.white, fontFamily: 'Canterbury'),
+                        textStyle: const TextStyle(fontSize: 28.0, color: Colors.white, fontFamily: 'Canterbury'),
                       ),
                     ],
                   ),

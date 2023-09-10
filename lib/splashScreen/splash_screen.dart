@@ -19,7 +19,7 @@ class _MySplashScreenState extends State<MySplashScreen>
 {
   startTimer(){
     fAuth.currentUser!=null?AssistantMethods.readCurrentOnlineUserInfo(): null;
-    Timer(const Duration(seconds: 3), () async
+    Timer(const Duration(seconds: 1), () async
     {
       Navigator.push(context, MaterialPageRoute(builder: (c)=>  MainScreen()));
       if(await fAuth.currentUser != null)

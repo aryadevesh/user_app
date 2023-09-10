@@ -14,6 +14,8 @@ import '../models/direction_details_info.dart';
 import '../models/directions.dart';
 import 'package:http/http.dart ' as http;
 
+import '../models/treatments_history_model.dart';
+
 class AssistantMethods
 {
   static Future<String> searchAddressForGeographicCoOrdinates(Position position, context) async
@@ -112,7 +114,7 @@ class AssistantMethods
   static void readTreatmentsKeysForOnlineUser(context)
   {
     FirebaseDatabase.instance.ref()
-        .child("All Visit Requests")
+        .child("All visit Requests")
         .orderByChild("userName")
         .equalTo(userModelCurrentInfo!.name)
         .once()
@@ -147,7 +149,7 @@ class AssistantMethods
     for(String eachKey in treatmentsAllKeys)
     {
       FirebaseDatabase.instance.ref()
-          .child("All Visit Requests")
+          .child("All visit Requests")
           .child(eachKey)
           .once()
           .then((snap)
