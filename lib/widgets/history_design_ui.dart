@@ -34,7 +34,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
   Widget build(BuildContext context)
   {
     return Container(
-      color: Colors.black54,
+      color: Colors.blue,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
@@ -74,8 +74,8 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
             Row(
               children: [
                 const Icon(
-                  Icons.car_repair,
-                  color: Colors.black,
+                  Icons.local_hospital_outlined,
+                  color: Colors.red,
                   size: 28,
                 ),
 
@@ -85,7 +85,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
                   widget.treatmentsHistoryModel!.service_details!,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: Colors.blueAccent,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -124,7 +124,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
             const SizedBox(height: 14,),
 
             //icon + dropOff
-            Row(
+            const Row(
               children: [
 
                 // Image.asset(
@@ -133,17 +133,17 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
                 //   width: 24,
                 // ),
 
-                const SizedBox(width: 12,),
+                SizedBox(width: 12,),
 
-                Expanded(
-                  child: Text(
-                    widget.treatmentsHistoryModel!.destinationAddress!,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   child: Text(
+                //     widget.treatmentsHistoryModel!.destinationAddress!,
+                //     overflow: TextOverflow.ellipsis,
+                //     style: const TextStyle(
+                //       fontSize: 16,
+                //     ),
+                //   ),
+                // ),
 
               ],
             ),
@@ -158,7 +158,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
                 Text(
                   formatDateAndTime(widget.treatmentsHistoryModel!.time!),
                   style: const TextStyle(
-                    color: Colors.grey,
+                    color: Colors.blueAccent,
                   ),
                 ),
               ],

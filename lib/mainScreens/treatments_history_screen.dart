@@ -21,7 +21,7 @@ class _TreatmentsHistoryScreenState extends State<TreatmentsHistoryScreen>
   Widget build(BuildContext context)
   {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text(
@@ -31,20 +31,20 @@ class _TreatmentsHistoryScreenState extends State<TreatmentsHistoryScreen>
           icon: const Icon(Icons.close),
           onPressed: ()
           {
-            SystemNavigator.pop();
+            Navigator.of(context).pop();
           },
         ),
       ),
       body: ListView.separated(
         separatorBuilder: (context, i)=> const Divider(
-          color: Colors.grey,
+          color: Colors.blue,
           thickness: 2,
           height: 2,
         ),
         itemBuilder: (context, i)
         {
           return Card(
-            color: Colors.white54,
+            color: Colors.white,
             child: HistoryDesignUIWidget(
               treatmentsHistoryModel: Provider.of<AppInfo>(context, listen: false).allTreatmentsHistoryInformationList[i],
             ),

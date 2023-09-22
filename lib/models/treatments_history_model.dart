@@ -4,7 +4,6 @@ class TreatmentsHistoryModel
 {
   String? time;
   String? originAddress;
-  String? destinationAddress;
   String? status;
   String? base_price;
   String? service_details;
@@ -13,7 +12,6 @@ class TreatmentsHistoryModel
   TreatmentsHistoryModel({
     this.time,
     this.originAddress,
-    this.destinationAddress,
     this.status,
     this.service_details,
     this.doctorName,
@@ -23,7 +21,7 @@ class TreatmentsHistoryModel
   TreatmentsHistoryModel.fromSnapshot(DataSnapshot dataSnapshot)
   {
     time = (dataSnapshot.value as Map)["time"];
-    //originAddress = (dataSnapshot.value as Map)["originAddress"];
+    originAddress = (dataSnapshot.value as Map)["originAddress"];
     //destinationAddress = (dataSnapshot.value as Map)["destinationAddress"];
     status = (dataSnapshot.value as Map)["status"];
     base_price = (dataSnapshot.value as Map)["base_price"];

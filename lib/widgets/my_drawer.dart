@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:users_app/global/global.dart';
+import 'package:users_app/mainScreens/about_screen.dart';
+import 'package:users_app/mainScreens/profile_screen.dart';
 import 'package:users_app/mainScreens/treatments_history_screen.dart';
 import 'package:users_app/splashScreen/splash_screen.dart';
 
@@ -73,7 +75,7 @@ class _MyDrawerState extends State<MyDrawer>
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (c)=> const TreatmentsHistoryScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> TreatmentsHistoryScreen()));
             },
             child: const ListTile(
               leading: Icon(Icons.history, color: Colors.blue,),
@@ -89,6 +91,7 @@ class _MyDrawerState extends State<MyDrawer>
           GestureDetector(
             onTap: ()
             {
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> ProfileScreen()));
 
             },
             child: const ListTile(
@@ -105,7 +108,7 @@ class _MyDrawerState extends State<MyDrawer>
           GestureDetector(
             onTap: ()
             {
-
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> AboutScreen()));
             },
             child: const ListTile(
               leading: Icon(Icons.info, color: Colors.blue,),

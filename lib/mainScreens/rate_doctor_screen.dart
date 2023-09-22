@@ -64,7 +64,7 @@ class _RateDoctorScreenState extends State<RateDoctorScreen>
                 rating: countRatingStars,
                 allowHalfRating: false,
                 starCount: 5,
-                color: Colors.white,
+                color: Colors.lightBlueAccent,
                 borderColor: Colors.blue,
                 size: 46,
                 onRatingChanged: (valueOfStarsChoosed)

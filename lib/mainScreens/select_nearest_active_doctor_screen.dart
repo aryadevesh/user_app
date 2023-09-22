@@ -67,9 +67,10 @@ class _SelectNearestActiveDoctorsScreenState extends State<SelectNearestActiveDo
           onPressed: ()
           {
             //delete/remove the ride request from database
-            widget.referenceVisitRequest!.remove();
-            Fluttertoast.showToast(msg: "Restart App");
-            SystemNavigator.pop();
+            // widget.referenceVisitRequest!.remove();
+            // Fluttertoast.showToast(msg: "Restart App");
+            Navigator.of(context).pop();
+            //SystemNavigator.pop();
           },
         ),
       ),

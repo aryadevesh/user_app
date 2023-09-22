@@ -276,121 +276,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   saveVisitRequestInformation() {
     //1.save the visit request information
 
-    referenceVisitRequest =
-        FirebaseDatabase.instance.ref().child("All visit Requests").push();
-
-    var originLocation = Provider
-        .of<AppInfo>(context, listen: false)
-        .userPickUpLocation;
-
-    Map originLocationMap = {
-
-      "latitude": originLocation!.locationLatitude.toString(),
-      "longitude": originLocation.locationLongitude.toString(),
-    };
-
-    Map userInformationMap = {
-      "origin": originLocationMap,
-      "time": DateTime.now().toString(),
-      "userName": userModelCurrentInfo!.name,
-      "originAddress": originLocation.locationName,
-      "doctorId": "waiting",
-      "userPhone": userModelCurrentInfo!.phone,
-    };
-    referenceVisitRequest!.set(userInformationMap);
-
-    treatmentVisitRequestInfoStreamSubscription = referenceVisitRequest!.onValue.listen((eventSnap)
-    async {
-      if(eventSnap.snapshot.value == null)
-      {
-        return;
-      }
-
-      if((eventSnap.snapshot.value as Map)["service_details"] != null)
-      {
-        setState(() {
-          doctorServiceDetails = (eventSnap.snapshot.value as Map)["service_details"].toString();
-        });
-      }
-
-      if((eventSnap.snapshot.value as Map)["doctorPhone"] != null)
-      {
-        setState(() {
-          doctorPhone = (eventSnap.snapshot.value as Map)["doctorPhone"].toString();
-        });
-      }
-
-      if((eventSnap.snapshot.value as Map)["doctorName"] != null)
-      {
-        setState(() {
-          doctorName = (eventSnap.snapshot.value as Map)["doctorName"].toString();
-        });
-      }
-
-      if((eventSnap.snapshot.value as Map)["status"] != null)
-      {
-        userVisitRequestStatus = (eventSnap.snapshot.value as Map)["status"].toString();
-      }
-
-      if((eventSnap.snapshot.value as Map)["doctorLocation"] != null)
-      {
-        double doctorCurrentPositionLat = double.parse((eventSnap.snapshot.value as Map)["doctorLocation"]["latitude"].toString());
-        double doctorCurrentPositionLng = double.parse((eventSnap.snapshot.value as Map)["doctorLocation"]["longitude"].toString());
-
-        LatLng doctorCurrentPositionLatLng = LatLng(doctorCurrentPositionLat, doctorCurrentPositionLng);
-
-        //status = accepted
-        if(userVisitRequestStatus == "accepted")
-        {
-          updateArrivalTimeToUserPickupLocation(doctorCurrentPositionLatLng);
-        }
-
-        //status = arrived
-        if(userVisitRequestStatus == "arrived")
-        {
-          setState(() {
-            doctorVisitStatus = "Doctor has Arrived";
-          });
-        }
-
-        //status = treatment
-        //
-
-        if(userVisitRequestStatus == "ended"){
-
-          if((eventSnap.snapshot.value as Map)["base_price"] != null){
-              double treatmentAmount = double.parse((eventSnap.snapshot.value as Map)["base_price"].toString());
-              var response = await showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext c) => PayFareAmountDialog(
-                  treatmentAmount: treatmentAmount,
-                ),
-              );
-
-              if(response == "cashPaid")
-              {
-                //user can rate the doctor now
-                if((eventSnap.snapshot.value as Map)["doctorId"] != null)
-                {
-                  String assignedDoctorId = (eventSnap.snapshot.value as Map)["doctorId"].toString();
-
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> RateDoctorScreen(
-                    assignedDoctorId: assignedDoctorId,
-                  )));
-
-                  referenceVisitRequest!.onDisconnect();
-                  treatmentVisitRequestInfoStreamSubscription!.cancel();
-                }
-              }
-
-          }
-        }
-
-      }
-    });
-
-
     onlineNearbyAvailableDoctorsList =
         GeoFireAssistant.activeNearbyAvailableDoctorsList;
     searchNearestOnlineDoctors();
@@ -437,6 +322,122 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
             referenceVisitRequest: referenceVisitRequest)));
 
     if (response == "doctorChosen") {
+
+      referenceVisitRequest =
+          FirebaseDatabase.instance.ref().child("All visit Requests").push();
+
+      var originLocation = Provider
+          .of<AppInfo>(context, listen: false)
+          .userPickUpLocation;
+
+      Map originLocationMap = {
+
+        "latitude": originLocation!.locationLatitude.toString(),
+        "longitude": originLocation.locationLongitude.toString(),
+      };
+
+      Map userInformationMap = {
+        "origin": originLocationMap,
+        "time": DateTime.now().toString(),
+        "userName": userModelCurrentInfo!.name,
+        "originAddress": originLocation.locationName,
+        "doctorId": "waiting",
+        "userPhone": userModelCurrentInfo!.phone,
+      };
+      referenceVisitRequest!.set(userInformationMap);
+
+      treatmentVisitRequestInfoStreamSubscription = referenceVisitRequest!.onValue.listen((eventSnap)
+      async {
+        if(eventSnap.snapshot.value == null)
+        {
+          return;
+        }
+
+        if((eventSnap.snapshot.value as Map)["service_details"] != null)
+        {
+          setState(() {
+            doctorServiceDetails = (eventSnap.snapshot.value as Map)["service_details"].toString();
+          });
+        }
+
+        if((eventSnap.snapshot.value as Map)["doctorPhone"] != null)
+        {
+          setState(() {
+            doctorPhone = (eventSnap.snapshot.value as Map)["doctorPhone"].toString();
+          });
+        }
+
+        if((eventSnap.snapshot.value as Map)["doctorName"] != null)
+        {
+          setState(() {
+            doctorName = (eventSnap.snapshot.value as Map)["doctorName"].toString();
+          });
+        }
+
+        if((eventSnap.snapshot.value as Map)["status"] != null)
+        {
+          userVisitRequestStatus = (eventSnap.snapshot.value as Map)["status"].toString();
+        }
+
+        if((eventSnap.snapshot.value as Map)["doctorLocation"] != null)
+        {
+          double doctorCurrentPositionLat = double.parse((eventSnap.snapshot.value as Map)["doctorLocation"]["latitude"].toString());
+          double doctorCurrentPositionLng = double.parse((eventSnap.snapshot.value as Map)["doctorLocation"]["longitude"].toString());
+
+          LatLng doctorCurrentPositionLatLng = LatLng(doctorCurrentPositionLat, doctorCurrentPositionLng);
+
+          //status = accepted
+          if(userVisitRequestStatus == "accepted")
+          {
+            updateArrivalTimeToUserPickupLocation(doctorCurrentPositionLatLng);
+          }
+
+          //status = arrived
+          if(userVisitRequestStatus == "arrived")
+          {
+            setState(() {
+              doctorVisitStatus = "Doctor has Arrived";
+            });
+          }
+
+          //status = treatment
+          //
+
+          if(userVisitRequestStatus == "ended"){
+
+            if((eventSnap.snapshot.value as Map)["base_price"] != null){
+              double treatmentAmount = double.parse((eventSnap.snapshot.value as Map)["base_price"].toString());
+              var response = await showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext c) => PayFareAmountDialog(
+                  treatmentAmount: treatmentAmount,
+                ),
+              );
+
+              if(response == "cashPaid")
+              {
+                //user can rate the doctor now
+                if((eventSnap.snapshot.value as Map)["doctorId"] != null)
+                {
+                  String assignedDoctorId = (eventSnap.snapshot.value as Map)["doctorId"].toString();
+
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=> RateDoctorScreen(
+                    assignedDoctorId: assignedDoctorId,
+                  )));
+
+                  referenceVisitRequest!.onDisconnect();
+                  treatmentVisitRequestInfoStreamSubscription!.cancel();
+                }
+              }
+
+            }
+          }
+
+        }
+      });
+
+
       FirebaseDatabase.instance.ref().child("doctors")
           .child(chosenDoctorId)
           .once()
@@ -614,16 +615,16 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           ),
 
           Positioned(
-            top: 650,
+            top: 700,
             bottom: 0,
             left: 0,
             right: 0,
             child: AnimatedSize(
               curve: Curves.easeIn,
-              duration: Duration(milliseconds: 120),
+              duration:  Duration(milliseconds: 120),
               child: Container(
                 height: searchLocationContainerHeight,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),
@@ -679,9 +680,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                       const SizedBox(height: 16.0),
 
                       ElevatedButton(
-                        child: const Text(
-                          "Request a Medical Service",
-                        ),
                         onPressed: () {
                           saveVisitRequestInformation();
                         },
@@ -689,6 +687,9 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                             backgroundColor: Colors.blue,
                             textStyle: const TextStyle(fontSize: 16,
                                 fontWeight: FontWeight.bold)
+                        ),
+                        child: const Text(
+                          "Request a Medical Service",
                         ),
 
                       ),
@@ -722,7 +723,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                         'Waiting for Response\nfrom Doctor',
                         duration: const Duration(seconds: 6),
                         textAlign: TextAlign.center,
-                        textStyle: const TextStyle(fontSize: 28.0, color: Colors.white, fontWeight: FontWeight.bold),
+                        textStyle: const TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       ScaleAnimatedText(
                         'Please wait...',
