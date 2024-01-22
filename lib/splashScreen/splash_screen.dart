@@ -1,5 +1,8 @@
 import 'dart:async';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:users_app/assistants/common_methods.dart';
 import 'package:users_app/authentication/login_screen.dart';
 
 import 'package:users_app/mainScreens/main_screen.dart';
@@ -17,21 +20,40 @@ class MySplashScreen extends StatefulWidget {
 
 class _MySplashScreenState extends State<MySplashScreen>
 {
-  startTimer(){
-    fAuth.currentUser!=null?AssistantMethods.readCurrentOnlineUserInfo(): null;
+  CommonMethods cMethods = CommonMethods();
+
+  startTimer() {
+    fAuth.currentUser != null
+        ? AssistantMethods.readCurrentOnlineUserInfo()
+        : null;
     Timer(const Duration(seconds: 1), () async
     {
-      Navigator.push(context, MaterialPageRoute(builder: (c)=>  MainScreen()));
-      if(await fAuth.currentUser != null)
-      {
-        currentFirebaseUser = fAuth.currentUser;
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> MainScreen()));
+      // Navigator.push(context, MaterialPageRoute(builder: (c)=>  MainScreen()));
+      if (fAuth.currentUser == null) {
+        FirebaseAuth.instance.signOut();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => LoginScreen()));
       }
-      else
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=>  LoginScreen()));
-      }
-      // send user to home screen
+
+      DatabaseReference usersRef = FirebaseDatabase.instance.ref().child(
+          "users").child(fAuth.currentUser!.uid);
+      usersRef.once().then((snap) {
+        if ((snap.snapshot.value as Map)["blockStatus"] == "no") {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => const MainScreen()));
+        }
+        else {
+          FirebaseAuth.instance.signOut();
+          Fluttertoast.showToast(
+            msg: "You are blocked so, Please contact admin: aryadevesh78@gmail.com",
+            toastLength: Toast.LENGTH_LONG,
+          );
+          //cMethods.displaySnackBar("You are blocked so, Please contact admin: aryadevesh78@gmail.com", context);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => LoginScreen()));
+        }
+        // send user to home screen
+      });
     });
   }
   @override

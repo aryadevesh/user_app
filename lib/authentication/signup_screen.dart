@@ -1,3 +1,5 @@
+
+import 'package:users_app/assistants/common_methods.dart';
 import 'package:users_app/authentication/login_screen.dart';
 import 'package:users_app/splashScreen/splash_screen.dart';
 import 'package:users_app/widgets/progress_dialog.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../global/global.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -16,6 +18,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
+  CommonMethods cMethods = CommonMethods();
+
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
@@ -53,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           password: passwordTextEditingController.text.trim(),
         ).catchError((msg){
           Navigator.pop(context);
-          Fluttertoast.showToast(msg: "Error: " + msg.toString());
+          Fluttertoast.showToast(msg: "Error: $msg");
         })
     ).user;
 
@@ -65,6 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "name": nameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
+        "blockStatus": "no",
       };
 
       DatabaseReference usersRef = FirebaseDatabase.instance.ref().child("users");
@@ -80,6 +86,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Fluttertoast.showToast(msg: "Account has not been Created.");
     }
   }
+
+  checkIfTheNetworkAvailable(){
+  cMethods.checkConnectivity(context);
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,6 +234,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ElevatedButton(
                 onPressed:()
               {
+                checkIfTheNetworkAvailable();
                 validateForm();
               },
                 style: ElevatedButton.styleFrom(

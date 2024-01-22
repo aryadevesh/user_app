@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 import 'package:users_app/global/global.dart';
@@ -96,7 +96,7 @@ class _SelectNearestActiveDoctorsScreenState extends State<SelectNearestActiveDo
                 leading: Padding(
                   padding: const EdgeInsets.only(top: 2.0),
                   child: Image.asset(
-                    "images/" + dList[index]["service_details"]["service_type"].toString() + ".png",
+                    "images/${dList[index]["service_details"]["service_type"]}.png",
                     width: 70,
                   ),
                 ),
@@ -118,7 +118,7 @@ class _SelectNearestActiveDoctorsScreenState extends State<SelectNearestActiveDo
                       ),
                     ),
                     SmoothStarRating(
-                      rating: 4.2,
+                      rating: dList[index]["ratings"] == null ? 0.0 : double.parse(dList[index]["ratings"]),
                       color: Colors.black,
                       borderColor: Colors.black,
                       allowHalfRating: true,

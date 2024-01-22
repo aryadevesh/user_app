@@ -17,6 +17,8 @@ class TreatmentsHistoryScreen extends StatefulWidget
 
 class _TreatmentsHistoryScreenState extends State<TreatmentsHistoryScreen>
 {
+
+
   @override
   Widget build(BuildContext context)
   {

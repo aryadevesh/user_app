@@ -48,7 +48,7 @@ class LoginScreen extends StatefulWidget {
           password: passwordTextEditingController.text.trim(),
         ).catchError((msg){
           Navigator.pop(context);
-          Fluttertoast.showToast(msg: "Error: " + msg.toString());
+          Fluttertoast.showToast(msg: "Error: $msg");
         })
     ).user;
 
@@ -60,7 +60,7 @@ class LoginScreen extends StatefulWidget {
           final snap = doctorkey.snapshot;
           if(snap.value != null){
           currentFirebaseUser = firebaseUser;
-          Fluttertoast.showToast(msg: "Logged in Successfully.");
+
           Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
           }
           else{
@@ -73,7 +73,7 @@ class LoginScreen extends StatefulWidget {
     else
     {
       Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Error occured during login.");
+      Fluttertoast.showToast(msg: "Error occurred during login.");
     }
   }
   @override

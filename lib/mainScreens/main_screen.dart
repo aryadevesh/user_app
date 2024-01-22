@@ -14,13 +14,14 @@ import 'package:users_app/mainScreens/rate_doctor_screen.dart';
 import 'package:users_app/mainScreens/select_nearest_active_doctor_screen.dart';
 import '../global/global.dart';
 import '../infoHandler/app_info.dart';
-
 import '../models/active_nearby_available_doctors.dart';
 import '../widgets/my_drawer.dart';
 import '../widgets/pay_fare_amount_dialog.dart';
 
 class MainScreen extends StatefulWidget
 {
+  const MainScreen({super.key});
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -32,8 +33,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   GoogleMapController? newGoogleMapController;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(23.555930,79.449055),
+    zoom: 5,
   );
 
   GlobalKey<ScaffoldState> sKey = GlobalKey<ScaffoldState>();
@@ -264,13 +265,14 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
     userEmail = userModelCurrentInfo!.email!;
 
     initializeGeofireListener();
-    AssistantMethods.readTreatmentsKeysForOnlineUser(context);
+
   }
 
   @override
   void initState() {
     super.initState();
     checkIfLocationPermissionAllowed();
+    AssistantMethods.readTreatmentsKeysForOnlineUser(context);
   }
 
   saveVisitRequestInformation() {
@@ -291,7 +293,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         return;
       }
       setState(() {
-        print(doctorCurrentPositionLatLng + userPickupPosition);
+
         doctorVisitStatus = "Doctor is coming in ${directionDetailsInfo.duration_text}";
       });
 
@@ -326,9 +328,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
       referenceVisitRequest =
           FirebaseDatabase.instance.ref().child("All visit Requests").push();
 
-      var originLocation = Provider
-          .of<AppInfo>(context, listen: false)
-          .userPickUpLocation;
+      var originLocation = Provider.of<AppInfo>(context, listen: false).userPickUpLocation;
 
       Map originLocationMap = {
 
@@ -524,8 +524,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         String deviceRegistrationToken = snap.snapshot.value.toString();
 //sending notification
         AssistantMethods.sendNotificationToDoctorNow(
-            deviceRegistrationToken, referenceVisitRequest!.key.toString(),
-            context);
+            deviceRegistrationToken, referenceVisitRequest!.key.toString(), context,
+            );
         Fluttertoast.showToast(msg: "Notification sent successfully");
       } else {
         Fluttertoast.showToast(msg: "Please choose another Service!");
@@ -533,7 +533,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
       }
     });
     //automate the push notification
-
 
   }
 
@@ -584,7 +583,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                 //for black theme of google maps
                 //blackThemeGoogleMap();
                 setState(() {
-                  bottomPaddingOfMap = 170;
+                  bottomPaddingOfMap = 150;
                 });
                 locateUserPosition();
               },
@@ -615,7 +614,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           ),
 
           Positioned(
-            top: 700,
+            top: 650,
             bottom: 0,
             left: 0,
             right: 0,

@@ -1,7 +1,12 @@
 
 import 'dart:convert';
 
+
+
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
+
+
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +23,7 @@ import '../models/treatments_history_model.dart';
 
 class AssistantMethods
 {
-  static Future<String> searchAddressForGeographicCoOrdinates(Position position, context) async
+  static Future<String> searchAddressForGeographicCoOrdinates(Position position,BuildContext context) async
   {
 
     String apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=$mapKey";
@@ -80,7 +85,7 @@ class AssistantMethods
     }
     );
   }
-  static sendNotificationToDoctorNow(String deviceRegistrationToken, String userVisitRequestId, context) async{
+  static void sendNotificationToDoctorNow(String deviceRegistrationToken, String userVisitRequestId, context) async{
 
     //var destinationAddress = Provider.of<AppInfo>(context, listen: false).userPickUpLocation;
 
@@ -104,7 +109,7 @@ class AssistantMethods
       "priority": "high",
       "to": deviceRegistrationToken,
     };
-    var responseNotification = http.post(
+    await http.post(
       Uri.parse("https://fcm.googleapis.com/fcm/send"),
       headers: headerNotification,
       body: jsonEncode(officialNotificationFormat),
