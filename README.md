@@ -20,23 +20,8 @@ This project involves the development of two synchronized Android applications, 
 
 ## Screenshots and Videos
 
-### User App
 
-![User App Screenshot]()]
-
-### Service Provider App
-
-![Service Provider App Screenshot]((https://drive.google.com/uc?export=view&id=1wEAvmBiVjpzqoE-M-7nJSGncbpjvcZ60))
-
-### Video Demonstrations
-
-#### User App Demo
-
-[![User App Demo](path_to_user_app_video_thumbnail)](path_to_user_app_video)
-
-#### Service Provider App Demo
-
-[![Service Provider App Demo](path_to_service_provider_app_video_thumbnail)](path_to_service_provider_app_video)
+[![Images and Videos visit](path_to_service_provider_app_video_thumbnail)]([path_to_service_provider_app_video](https://github.com/aryadevesh/androidAppsImages))
 
 ## Contributing
 
