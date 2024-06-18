@@ -1,4 +1,4 @@
-# Flutter Firebase Project
+# Flutter Service Booking Project
 
 ## Overview
 
@@ -21,7 +21,7 @@ This project involves the development of two synchronized Android applications, 
 ## Screenshots and Videos
 
 
-[![Images and Videos visit](path_to_service_provider_app_video_thumbnail)]([path_to_service_provider_app_video](https://github.com/aryadevesh/androidAppsImages))
+[![Images and Videos visit]](https://github.com/aryadevesh/androidAppsImages)
 
 ## Contributing
 
