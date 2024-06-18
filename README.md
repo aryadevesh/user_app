@@ -10,7 +10,7 @@ This project involves the development of two synchronized Android applications, 
 - **Service Provider App**: Designed for service providers to manage their appointments and services.
 - **Real-time Data Sync**: Utilizes Firebase for real-time data synchronization between both apps.
 - **Authentication**: Firebase Authentication for secure login and registration.
-- **Database**: Firebase Firestore for storing and managing user and service provider data.
+- **Database**: Firebase realtime for storing and managing user and service provider data.
 - **Notifications**: Firebase Cloud Messaging for sending notifications to users and providers.
 
 ## Project Links
@@ -26,7 +26,7 @@ This project involves the development of two synchronized Android applications, 
 
 ### Service Provider App
 
-![Service Provider App Screenshot]([path_to_service_provider_app_screenshot](https://drive.google.com/file/d/1wEAvmBiVjpzqoE-M-7nJSGncbpjvcZ60/view?usp=sharing))
+![Service Provider App Screenshot]((https://drive.google.com/file/d/1wEAvmBiVjpzqoE-M-7nJSGncbpjvcZ60/view?usp=sharing))
 
 ### Video Demonstrations
 
