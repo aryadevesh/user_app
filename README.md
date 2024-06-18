@@ -22,7 +22,7 @@ This project involves the development of two synchronized Android applications, 
 
 ### User App
 
-![User App Screenshot](https://github.com/aryadevesh/androidAppsImages/blob/main/Screenshot_20240618_120100.jpg])]
+![User App Screenshot](https://github.com/aryadevesh/androidAppsImages/blob/main/Screenshot_20240618_120100.jpg)]
 
 ### Service Provider App
 
