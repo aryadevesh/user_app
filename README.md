@@ -26,7 +26,7 @@ This project involves the development of two synchronized Android applications, 
 
 ### Service Provider App
 
-![Service Provider App Screenshot]([https://drive.google.com/file/d/1wEAvmBiVjpzqoE-M-7nJSGncbpjvcZ60/view?usp=sharing](https://drive.google.com/uc?export=view&id=1wEAvmBiVjpzqoE-M-7nJSGncbpjvcZ60))
+![Service Provider App Screenshot]((https://drive.google.com/uc?export=view&id=1wEAvmBiVjpzqoE-M-7nJSGncbpjvcZ60))
 
 ### Video Demonstrations
 
