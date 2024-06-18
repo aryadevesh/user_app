@@ -1,4 +1,4 @@
-# Flutter Service Booking Project
+# Flutter Meical Service Booking Project
 
 ## Overview
 
