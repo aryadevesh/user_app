@@ -21,26 +21,8 @@ This project involves the development of two synchronized Android applications, 
 ## Screenshots and Videos
 
 
-[![Images and Videos visit]](https://github.com/aryadevesh/androidAppsImages)
+[![Images and Videos visit]](https://drive.google.com/drive/folders/1ijXaSBayqlzIgwCGSXBh8MDOeo4Eks3A?usp=sharing)
 
-## Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b my-branch-name`.
-3. Make your changes and commit them: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin my-branch-name`.
-5. Submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any inquiries or issues, please contact [Your Name](mailto:your.email@example.com).
 
 ---
-
-Feel free to replace placeholders like `path_to_user_app_screenshot`, `path_to_service_provider_app_screenshot`, `path_to_user_app_video_thumbnail`, `path_to_user_app_video`, `path_to_service_provider_app_video_thumbnail`, and `path_to_service_provider_app_video` with the actual paths or URLs to your media files.
